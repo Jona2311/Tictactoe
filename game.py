@@ -21,7 +21,6 @@ def g():
                 winner = win(tic)
                 if winner != 0:
                     print(f"player {winner} wins!!!")
-                    reset()
                     print("game reset")
                     break
                 break
@@ -35,15 +34,18 @@ def win(game):
     for row in game:
         if all(items == row[0] and row[0] != 0 for items in row):
             print(f"player {row[0]} wins horizontally!!!!")
+            reset()
 
     for col in range(len(game)):
         if all(row[col] == game[0][col] and game[0][col] != 0 for row in game):
             print(f"player {game[0][col]} wins vertically!!!!")
+            reset()
 
     if all(
         game[col][col] == game[0][0] and game[0][0] != 0 for col in range(len(game))
     ):
         print(f"player {game[0][0]} wins diagonally!!!!")
+        reset()
 
     if all(
         game[col][len(game) - col - 1] == game[0][len(game) - 1]
@@ -51,6 +53,7 @@ def win(game):
         for col in range(len(game))
     ):
         print(f"player {game[0][len(game) - 1]} wins diagonally!!!!")
+        reset()
 
     return 0
 
